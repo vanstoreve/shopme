@@ -388,6 +388,143 @@
     .support-fab{padding:14px;}
     .promo-inner{font-size:12px;padding:9px 40px;}
   }
+  /* ================= KHQR PAYMENT POPUP ================= */
+
+.khqr-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.65);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  overflow-y: auto;
+}
+
+.khqr-overlay.show {
+  display: flex;
+}
+
+.khqr-modal {
+  width: 410px;
+  max-width: 100%;
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  position: relative;
+}
+
+.khqr-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 14px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 25px;
+  color: #111;
+}
+
+.khqr-close {
+  border: 0;
+  background: transparent;
+  color: #00a9d6;
+  font-size: 32px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.khqr-image {
+  width: 100%;
+  display: block;
+}
+
+.payment-area {
+  padding: 18px;
+}
+
+.payment-area h3 {
+  margin: 0 0 5px;
+  font-family: 'Baloo 2';
+  font-size: 19px;
+}
+
+.payment-product {
+  color: var(--ink-soft);
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.payment-input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 10px;
+  border: 1px solid #dfe7e2;
+  border-radius: 9px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+
+.payment-input:focus {
+  border-color: var(--leaf);
+}
+
+.upload-title {
+  display: block;
+  margin: 5px 0 7px;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.payment-file {
+  width: 100%;
+  padding: 10px;
+  border: 1px dashed var(--leaf);
+  border-radius: 9px;
+  background: #f3fbf6;
+  cursor: pointer;
+}
+
+.payment-preview {
+  display: none;
+  width: 100%;
+  max-height: 260px;
+  object-fit: contain;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+}
+
+.payment-preview.show {
+  display: block;
+}
+
+.payment-done {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--leaf-dark);
+  color: white;
+  font-family: 'Baloo 2';
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.payment-done:hover {
+  background: var(--leaf);
+}
+
+.payment-status {
+  text-align: center;
+  margin: 10px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+}
 </style>
 </head>
 <body>
@@ -659,6 +796,98 @@
                 <a class="buy-now-btn" href="${TG_LINK}?text=${encodeURIComponent(buildOrderMessage(p.name, p.price))}" target="_blank" rel="noopener" data-name="${p.name}" data-price="${p.price}">
                   <svg viewBox="0 0 24 24"><path d="M7 4V2h2v2h6V2h2v2h1a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3zm-3 6v10h16V10H4zm4 3h2v2H8v-2zm4 0h2v2h-2v-2z"/></svg>
                   ទិញ
+                  <div id="toast">
+                    <!-- ================= KHQR PAYMENT POPUP ================= -->
+
+<div class="khqr-overlay" id="khqrOverlay">
+
+  <div class="khqr-modal">
+
+    <div class="khqr-title">
+
+      <span>ABA KHQR</span>
+
+      <button
+        class="khqr-close"
+        onclick="closeKHQR()"
+        aria-label="Close"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <!-- YOUR KHQR PHOTO -->
+    <img
+      src="image/khqr.png"
+      class="khqr-image"
+      alt="ABA KHQR Payment"
+    >
+
+    <div class="payment-area">
+
+      <h3>Payment Information</h3>
+
+      <p class="payment-product" id="paymentProduct">
+        Product
+      </p>
+
+      <input
+        class="payment-input"
+        id="paymentName"
+        type="text"
+        placeholder="Your name"
+      >
+
+      <input
+        class="payment-input"
+        id="paymentTelegram"
+        type="text"
+        placeholder="Telegram username"
+      >
+
+      <input
+        class="payment-input"
+        id="paymentTransaction"
+        type="text"
+        placeholder="Transaction ID"
+      >
+
+      <label class="upload-title">
+        📷 Upload Payment Screenshot
+      </label>
+
+      <input
+        class="payment-file"
+        id="paymentScreenshot"
+        type="file"
+        accept="image/*"
+      >
+
+      <img
+        id="paymentPreview"
+        class="payment-preview"
+        alt="Payment screenshot preview"
+      >
+
+      <button
+        class="payment-done"
+        onclick="finishPayment()"
+      >
+        ✅ Payment Uploaded
+      </button>
+
+      <p
+        class="payment-status"
+        id="paymentStatus"
+      ></p>
+
+    </div>
+
+  </div>
+
+                    </div>
+                  </div>
                 </a>
                 
                 </a>
@@ -742,7 +971,13 @@
   document.getElementById('promoClose').addEventListener('click', () => {
     document.getElementById('promoBanner').classList.add('hidden');
   });
-
+  <a class="buy-now-btn" href="${TG_LINK}?text=${encodeURIComponent(buildOrderMessage(p.name, p.price))}" target="_blank" rel="noopener" data-name="${p.name}" data-price="${p.price}">
+   <button
+  class="buy-now-btn"
+  type="button"
+  data-name="${p.name}"
+  data-price="${p.price}"
+  onclick="openKHQR('${p.name.replace(/'/g, "\\'")}', ${p.price})">
 </script>
 </body>
 </html>
