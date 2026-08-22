@@ -204,7 +204,7 @@
 <!-- ================= FOOTER ================= -->
 <footer>
   <div class="foot-inner">
-    <p>© 2026 Van Store. Make by ROEUY MC.</p>
+    <p>© 2026 Van Store. All rights reserved.</p>
     <div class="foot-links">
       <a href="#products">Products</a>
       <a href="https://readmenu.site/van-store">Keybord</a>
@@ -226,6 +226,13 @@
   // ---------- product data (from Van Store listing) ----------
   const products = [
    
+    {
+      type:'java', rc:'r-java', rarity:'Java + Bedrock',
+      badge:'Java + Bedrock', name:'Minecraft Account Random Cape',
+      khName:'ធានាសុវត្ថិភាពចំនួន 7 ថ្ងៃ · ប្រភេទ randome cape',
+      desc:'Full access, name and password change included.',
+      price:10, old:null, stock:'In stock', emoji:'<img src="image/randome.jpg">', art:'Java +'
+    },
     {
       type:'java', rc:'r-java', rarity:'Java + Bedrock',
       badge:'Java + Bedrock', name:'Minecraft Account Random Cape',
@@ -277,99 +284,7 @@
               <div class="btn-group">
                 <a class="buy-now-btn" href="${TG_LINK}?text=${encodeURIComponent(buildOrderMessage(p.name, p.price))}" target="_blank" rel="noopener" data-name="${p.name}" data-price="${p.price}">
                   <svg viewBox="0 0 24 24"><path d="M7 4V2h2v2h6V2h2v2h1a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3zm-3 6v10h16V10H4zm4 3h2v2H8v-2zm4 0h2v2h-2v-2z"/></svg>
-                  ទិញ
-                  <div id="toast">
-                    <!-- ================= KHQR PAYMENT POPUP ================= -->
-
-<div class="khqr-overlay" id="khqrOverlay">
-
-  <div class="khqr-modal">
-
-    <div class="khqr-title">
-
-      <span>ABA KHQR</span>
-
-      <button
-        class="khqr-close"
-        onclick="closeKHQR()"
-        aria-label="Close"
-      >
-        ×
-      </button>
-
-    </div>
-
-    <!-- YOUR KHQR PHOTO -->
-    <img
-      src="image/khqr.png"
-      class="khqr-image"
-      alt="ABA KHQR Payment"
-    >
-
-    <div class="payment-area">
-
-      <h3>Payment Information</h3>
-
-      <p class="payment-product" id="paymentProduct">
-        Product
-      </p>
-
-      <input
-        class="payment-input"
-        id="paymentName"
-        type="text"
-        placeholder="Your name"
-      >
-
-      <input
-        class="payment-input"
-        id="paymentTelegram"
-        type="text"
-        placeholder="Telegram username"
-      >
-
-      <input
-        class="payment-input"
-        id="paymentTransaction"
-        type="text"
-        placeholder="Transaction ID"
-      >
-
-      <label class="upload-title">
-        📷 Upload Payment Screenshot
-      </label>
-
-      <input
-        class="payment-file"
-        id="paymentScreenshot"
-        type="file"
-        accept="image/*"
-      >
-
-      <img
-        id="paymentPreview"
-        class="payment-preview"
-        alt="Payment screenshot preview"
-      >
-
-      <button
-        class="payment-done"
-        onclick="finishPayment()"
-      >
-        ✅ Payment Uploaded
-      </button>
-
-      <p
-        class="payment-status"
-        id="paymentStatus"
-      ></p>
-
-    </div>
-
-  </div>
-
-                    </div>
-                  </div>
+                  Buy
                 </a>
                 
                 </a>
@@ -453,13 +368,7 @@
   document.getElementById('promoClose').addEventListener('click', () => {
     document.getElementById('promoBanner').classList.add('hidden');
   });
-  <a class="buy-now-btn" href="${TG_LINK}?text=${encodeURIComponent(buildOrderMessage(p.name, p.price))}" target="_blank" rel="noopener" data-name="${p.name}" data-price="${p.price}">
-   <button
-  class="buy-now-btn"
-  type="button"
-  data-name="${p.name}"
-  data-price="${p.price}"
-  onclick="openKHQR('${p.name.replace(/'/g, "\\'")}', ${p.price})">
+
 </script>
 </body>
 </html>
